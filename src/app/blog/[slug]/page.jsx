@@ -4,13 +4,13 @@ import Image from 'next/image'
 import PostUser from '@/app/components/postUser/PostUser'
 import { getUser,getUsers,  getPost, getPosts } from '@/app/components/lib/data'
 //get data via api
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}` , {next:{revalidate:3600}})
-//   if(!res.ok) {
-//     throw new Error("something went wrong")
-//   }
-//   return res.json()
-// }
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/${slug}` , {next:{revalidate:3600}})
+  if(!res.ok) {
+    throw new Error("something went wrong")
+  }
+  return res.json()
+}
 
 export const generateMetadata = async ({params}) => {
   const {slug} = params;
@@ -28,8 +28,8 @@ const BlogPage = async ({params}) => {
   console.log(params)
 
   //get data via api
-  //const post = await getData(slug)
-  const post = await getPost((slug))
+  const post = await getData(slug)
+  //const post = await getPost((slug))
   console.log (post)
     console.log(post.userId)
   return (

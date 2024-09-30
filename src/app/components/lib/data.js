@@ -15,10 +15,10 @@ import { connectToDb } from "./utils";
 
 // ]
 export const getPosts = async() => {
-    noStore()
+    noStore();
     try {
         
-        connectToDb();
+        await connectToDb();
         const posts = await Post.find()
         return posts
     } catch (error) {
